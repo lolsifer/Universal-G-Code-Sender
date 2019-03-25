@@ -32,7 +32,7 @@
             }
         ],
         "Custom": [
-
+			
         ],
         "End": [
             {
@@ -59,6 +59,17 @@
                 "optional": true,
                 "args": {
                     "commandLength":70
+                }
+            },{
+                "name": "ToolChange",
+                "enabled": true,
+                "optional": true,
+                "args": {
+                    "absoluteX":300,
+					"absoluteY":10,
+					"absoluteZ":75,
+					"toolMeasureMoveToProbe": "G30",
+					"toolMeasureDoProbing": "G38.2Z-100F250"
                 }
             }
         ]

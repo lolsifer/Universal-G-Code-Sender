@@ -29,6 +29,7 @@ import com.willwinder.universalgcodesender.gcode.processors.DecimalProcessor;
 import com.willwinder.universalgcodesender.gcode.processors.FeedOverrideProcessor;
 import com.willwinder.universalgcodesender.gcode.processors.M30Processor;
 import com.willwinder.universalgcodesender.gcode.processors.SpindleOnDweller;
+import com.willwinder.universalgcodesender.gcode.processors.ToolChange;
 import com.willwinder.universalgcodesender.gcode.processors.PatternRemover;
 import com.willwinder.universalgcodesender.gcode.processors.WhitespaceProcessor;
 import com.willwinder.universalgcodesender.i18n.Localization;
@@ -223,6 +224,14 @@ public class CommandProcessorLoader {
                 case "SpindleOnDweller":
                     double duration = pc.args.get("duration").getAsDouble();
                     p = new SpindleOnDweller(duration);
+                    break;
+                case "ToolChange":
+                    double absoluteX = pc.args.get("absoluteX").getAsDouble();
+					double absoluteY = pc.args.get("absoluteY").getAsDouble();
+					double absoluteZ = pc.args.get("absoluteZ").getAsDouble();
+					String toolMeasureMoveToProbe = pc.args.get("toolMeasureMoveToProbe").getAsString();
+					String toolMeasureDoProbing = pc.args.get("toolMeasureDoProbing").getAsString();
+                    p = new ToolChange(absoluteX, absoluteY, absoluteZ, toolMeasureMoveToProbe, toolMeasureDoProbing);
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown processor: " + pc.name);
